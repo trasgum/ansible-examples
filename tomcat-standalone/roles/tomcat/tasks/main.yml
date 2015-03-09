@@ -45,3 +45,27 @@
 
 - name: wait for tomcat to start
   wait_for: port={{http_port}}
+
+- name: Install maven repository
+  get_url: url=https://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo dest=/etc/yum.repos.d/epel-apache-maven.repo
+
+- name: Install maven
+  yum: name=maven state=present
+
+- name: Checkout app vmrc
+  git: repo=git://https://github.com/grycap/vmrc.git dest=/tmp/vmrc_build
+
+- name: Build vmrc
+  command: chdir=/tmp/vmrc_build mvn package -Dmaven.test.skip=true
+
+- name: Remove tomcat default ROOT
+  command: chdir=/usr/share/tomcat/ rm -rf webapps/ROOT
+
+- name: Deploy vmrc
+  unarchive: src=/tmp/vmrc_build/target/vmrc.war dest=/usr/share/tomcat/webapps/ROOT copy=no
+  notify: restart tomcat
+
+- name: wait for tomcat to start
+  wait_for: port={{http_port}}
+  notify: remove vmrc buil_dir
+
