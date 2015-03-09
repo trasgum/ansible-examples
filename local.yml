@@ -3,7 +3,7 @@
 # this is a test for ec2 user-data  
 # local.yml is used for pull-based Ansible setup.
 
-- hosts: tomcat-servers 
+- hosts: localhost 
   user: root
 
   roles:
