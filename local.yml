@@ -1,0 +1,11 @@
+---
+# easy RHEL 6.x tomcat playbook as an example.
+# this is a test for ec2 user-data  
+# local.yml is used for pull-based Ansible setup.
+
+- hosts: tomcat-servers 
+  user: root
+
+  roles:
+    - selinux
+    - tomcat
