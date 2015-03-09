@@ -7,5 +7,5 @@
   user: root
 
   roles:
-    - tomcat-standalone/selinux
-    - tomcat-standalone/tomcat
+    - tomcat-standalone/roles/selinux
+    - tomcat-standalone/roles/tomcat
