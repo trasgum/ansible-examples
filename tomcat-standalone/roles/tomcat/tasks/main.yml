@@ -50,7 +50,7 @@
   yum: name=https://repos.fedorapeople.org/repos/dchen/apache-maven/epel-6/x86_64/apache-maven-3.2.3-1.el6.noarch.rpm state=present
 
 - name: Checkout app vmrc
-  git: repo=git://https://github.com/grycap/vmrc.git dest=/tmp/vmrc_build accept_hostkey=yes
+  git: repo=git://github.com/grycap/vmrc.git dest=/tmp/vmrc_build accept_hostkey=yes
 
 - name: Build vmrc
   command: chdir=/tmp/vmrc_build mvn package -Dmaven.test.skip=true
