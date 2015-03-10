@@ -56,7 +56,7 @@
   command: chdir=/tmp/vmrc_build mvn package -Dmaven.test.skip=true
 
 - name: Remove tomcat default ROOT
-  command: chdir=/usr/share/tomcat/ rm -rf webapps/ROOT
+  command: chdir=/usr/share/tomcat/ rm -rf webapps/ROOT/*
 
 - name: Deploy vmrc
   unarchive: src=/tmp/vmrc_build/target/vmrc.war dest=/usr/share/tomcat/webapps/ROOT copy=no
