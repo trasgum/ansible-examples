@@ -58,9 +58,11 @@
 - name: Remove tomcat default ROOT
   command: chdir=/usr/share/tomcat/ rm -rf webapps/ROOT/*
 
-- name: Deploy vmrc
-  unarchive: src=/tmp/vmrc_build/target/vmrc.war dest=/usr/share/tomcat/webapps/ROOT copy=no
-  notify: restart tomcat
+#- name: Deploy vmrc
+#  unarchive: src=/tmp/vmrc_build/target/vmrc.war dest=/usr/share/tomcat/webapps/ROOT copy=no
+#  notify: restart tomcat
+- name: Depoy vmrc
+  command: chdir=tmp/vmrc_build/target/ unzip -d /usr/share/tomcat/webapps/ROOT vmrc.war
 
 - name: wait for tomcat to start
   wait_for: port={{http_port}}
