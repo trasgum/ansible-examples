@@ -3,7 +3,7 @@
   yum: name=java-1.7.0-openjdk state=present
 
 - name: Install unzip
-  yum: name unzip state=present
+  yum: name=unzip state=present
 
 - name: add group "tomcat"
   group: name=tomcat
